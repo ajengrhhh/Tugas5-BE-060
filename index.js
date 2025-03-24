@@ -9,6 +9,11 @@ app.use(cors());
 app.use(express.json());
 app.use(NoteRoute);
 
+// Tambahkan endpoint root
+app.get("/", (req, res) => {
+    res.send("Welcome to Notes API 🚀");
+});
+
 // Cek koneksi database saat server start
 async function startServer() {
     try {
