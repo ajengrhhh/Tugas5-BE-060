@@ -23,7 +23,7 @@ async function startServer() {
         // Sync database (pilih opsi sesuai kebutuhan)
         await db.sync({ alter: true }); // Bisa diganti force: true untuk dev
 
-        const PORT = process.env.PORT || 8080;
+        const PORT = process.env.PORT || 3000;
         app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
     } catch (error) {
         console.error("❌ Database connection failed:", error.message);
