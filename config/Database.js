@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 const db = new Sequelize('crud_db', 'root', '', {
-  host: '34.135.102.119',
+  host: '34.9.220.186',
   dialect: 'mysql',
 });
 
