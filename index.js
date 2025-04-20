@@ -5,9 +5,17 @@ import db from "./config/Database.js";
 
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(UserRoute);
+
+// Routes
+app.use("/notes", NoteRoute); // semua route dari NoteRoute akan diakses lewat /notes
+
+// Optional: route default untuk cek apakah server jalan
+app.get("/", (req, res) => {
+    res.send("Welcome to the Notes API!");
+});
 
 // Cek koneksi database saat server start
 async function startServer() {
@@ -18,7 +26,7 @@ async function startServer() {
         // Sync database
         await db.sync({ alter: true }); // Ubah ke force: true jika ingin reset tabel
 
-        const PORT = process.env.PORT || 8080; // default ke 3000
+        const PORT = process.env.PORT || 8080;
         app.listen(PORT, () => {
             console.log(`🚀 Server running on port ${PORT}`);
         });
