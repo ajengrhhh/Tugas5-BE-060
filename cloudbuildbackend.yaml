@@ -16,7 +16,7 @@ steps:
         "deploy",
         "tu6-be60",
         "--image",
-        "gcr.io/$PROJECT_ID/tu6-be060",
+        "gcr.io/$PROJECT_ID/tu6-be60",
         "--timeout",
         "1000s",
         "--region",
