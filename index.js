@@ -10,8 +10,12 @@ app.use(express.json());
 app.use(NoteRoute);
 
 // Tambahkan endpoint root
-app.get("/", (req, res) => {
-    res.send("Welcome to Notes API 🚀");
+app.get("/api/notes", (req, res) => {
+  const notes = [
+    { id: 1, title: "Note 1", content: "Isi note 1" },
+    { id: 2, title: "Note 2", content: "Isi note 2" },
+  ];
+  res.json(notes); // ini akan kirim array
 });
 
 // Cek koneksi database saat server start
