@@ -1,5 +1,5 @@
 steps:
-  # 1. Build Docker image untuk backend
+  # 1. Build Docker image untuk backend alternatif
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/tu6-be060", "."]
 
@@ -7,26 +7,25 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/tu6-be060"]
 
-  # 3. Deploy ke Cloud Run
+  # 3. Deploy ke Cloud Run dengan port 3100
   - name: "gcr.io/cloud-builders/gcloud"
     entrypoint: gcloud
     args:
       [
         "run",
         "deploy",
-        "tu6-be060",
+        "tu6-be060",             # Nama service unik
         "--image",
         "gcr.io/$PROJECT_ID/tu6-be060",
         "--timeout",
         "1000s",
         "--port",
-        "3000",
+        "3100",                   # Port backend container
         "--region",
         "us-central1",
         "--allow-unauthenticated",
       ]
 
-# Log hanya akan disimpan di Google Cloud Logging
-# Log tidak akan disimpan di Google Cloud Storage (butuh hak akses).
+# Hanya log ke Cloud Logging
 options:
   logging: CLOUD_LOGGING_ONLY
